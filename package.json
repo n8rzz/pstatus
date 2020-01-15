@@ -1,0 +1,54 @@
+{
+  "name": "pstatus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "report": "nyc report --reporter=cobertura --reporter=lcov",
+    "start": "clear; node ./index.js -l --limit 2 -h -i",
+    "test": "nyc --reporter=lcov --reporter=text --reporter=text-summary ava"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "lodash": "^4.17.15",
+    "minimist": "^1.2.5",
+    "moment": "^2.24.0",
+    "ora": "^3.4.0",
+    "rss-parser": "^3.7.6"
+  },
+  "devDependencies": {
+    "ava": "^3.5.1",
+    "nock": "^12.0.3",
+    "nyc": "^15.0.0",
+    "sinon": "^8.1.1"
+  },
+  "ava": {
+    "concurrency": 5,
+    "files": [
+      "src/**/*.spec.js",
+      "!src/**/__mock__/**"
+    ],
+    "failWithoutAssertions": false,
+    "verbose": true
+  },
+  "nyc": {
+    "all": true,
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "**/*.spec.js",
+      "src/**/__mock__/**"
+    ],
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80
+  }
+}
